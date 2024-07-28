@@ -50,8 +50,8 @@ public class ToDoController {
     @Operation(summary = "Get a to-do item by ID", description = "Delets a single to-do item by its ID")
     public String deleteToDoByID(@PathVariable Integer todoId) {
         toDoService.deleteToDoById(todoId);
-        String String;
-        return String = "deleted";
+        String deletedMessage;
+        return deletedMessage = "deleted";
     }
 
 }
