@@ -1,5 +1,6 @@
 package com.todoapi.Controller;
 
+import com.todoapi.DTO.ToDoItemUpdateDTO;
 import com.todoapi.Serivice.ToDoService;
 import com.todoapi.model.ToDoItem;
 import io.swagger.v3.oas.annotations.Operation;
@@ -46,12 +47,13 @@ public class ToDoController {
     }
 
 
-    @PostMapping("/delete/{todoId}")
-    @Operation(summary = "Get a to-do item by ID", description = "Delets a single to-do item by its ID")
-    public String deleteToDoByID(@PathVariable Integer todoId) {
-        toDoService.deleteToDoById(todoId);
-        String deletedMessage;
-        return deletedMessage = "deleted";
+    @PatchMapping("/edit/{todoId}")
+    @Operation(summary = "Edit a to-do item by ID", description = "Edits a single to-do item by its ID")
+    public ResponseEntity<ToDoItem> editTodoById(@PathVariable Integer todoId,
+                                                 @RequestBody ToDoItemUpdateDTO toDoItemDTO) {
+        ToDoItem todoItem = toDoService.editTodoById(todoId, toDoItemDTO);
+        return new ResponseEntity<>(todoItem, HttpStatus.OK);
     }
+
 
 }
